@@ -9,7 +9,6 @@ function App() {
     <div className="App">
      <Title/>
      <TaskList/>
-     <ClearTasks/>
     </div>
   );
 }
