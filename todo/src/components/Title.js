@@ -1,21 +1,6 @@
 import React, {useReducer, useState} from 'react'
+import {initialTitle, reducer} from '../reducers/reducer'
 
-
-const initialTitle = {
-    title: "ToDo List"
-}
-
-const reducer = (state, action) => {
-    switch(action.type){
-    case 'UPDATE_TITLE':
-        return{
-            ...state, 
-            title: action.payload
-        }
-    default:
-        return state
-}
-}
 
 
 export default function Title () {
@@ -30,7 +15,9 @@ export default function Title () {
 
     return(
         <div>
-            <h1>{state.title}</h1><input onChange = {onChange} value = {valueState}></input><button onClick = {() => dispatch({type: 'UPDATE_TITLE', payload: valueState})}>Change Title</button>
+            <h1>{state.title}</h1>
+            <input onChange = {onChange} value = {valueState}></input>
+            <button onClick = {() => dispatch({type: 'UPDATE_TITLE', payload: valueState})}>Change Title</button>
         </div>
     )
 }
