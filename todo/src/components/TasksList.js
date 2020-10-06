@@ -3,7 +3,6 @@ import {initialState, reducer} from '../reducers/reducer'
 
 
 
-
 export default function TaskList () {
     const [valueState, setValueState] = useState('')
     const [state, dispatch] = useReducer(reducer, initialState)
@@ -14,6 +13,7 @@ export default function TaskList () {
     const onSubmit = (e)=> {
         dispatch({type: 'UPDATE_LIST', payload: valueState});
         e.preventDefault();
+        setValueState('');
     }
     console.log(valueState)
     console.log(state)
@@ -32,7 +32,7 @@ export default function TaskList () {
 
     <div>
         {state.map (task => (
-            <p>{task.item}</p>
+            <p onClick = {() => dispatch({type: 'TOGGLE_TASK', payload: task.id})}>{task.item}</p>
         ))}
     </div>
     </div>

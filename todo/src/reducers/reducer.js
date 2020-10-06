@@ -10,6 +10,11 @@ export const initialState = [
     item: 'Learn Redux',
     completed: false, 
     id: 1234567,
+},
+{
+    item: 'Learn React',
+    completed: false, 
+    id: 1234568,
 }
 ]
 
@@ -29,6 +34,17 @@ export const initialState = [
             id: Date.now(),
         }
     ]
+        case 'TOGGLE_TASK':
+            return state.map(item =>
+                    item.id === action.payload?
+                    {
+                        ...item, 
+                        completed: !item.completed
+                    }
+                :item)
+        case 'CLEAR_COMPLETED':
+            return state.filter(item => !item.completed)
+
     default:
         return state
 }

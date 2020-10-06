@@ -13,11 +13,17 @@ export default function Title () {
         setValueState(e.target.value)
     }
 
+    const onClick = e => {
+    dispatch({type: 'UPDATE_TITLE', payload: valueState});
+    e.preventDefault();
+    setValueState('')
+    }
+
     return(
         <div>
             <h1>{state.title}</h1>
             <input onChange = {onChange} value = {valueState}></input>
-            <button onClick = {() => dispatch({type: 'UPDATE_TITLE', payload: valueState})}>Change Title</button>
+            <button onClick = {onClick}>Change Title</button>
         </div>
     )
 }
