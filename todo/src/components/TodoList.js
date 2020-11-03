@@ -1,5 +1,7 @@
 import React, {useState, useReducer} from 'react'
 import {initialState, reducer} from '../reducers/reducer'
+import '../App.css'
+
 
 
 export default function TodoList () {
@@ -16,6 +18,12 @@ export default function TodoList () {
         setValueState('')
     }
 
+    const clearOnClick = (e) => {
+        e.preventDefault()
+        dispatch({type: 'CLEAR_COMPLETED', payload: state.completed})
+    }
+
+   
 
 
     return(
@@ -31,6 +39,15 @@ export default function TodoList () {
                 </label>
                 <button>Add New Todo</button>
             </form>
+            <div>
+                {state.map (task => (
+                    <div className = {task.completed === false ? 'task' : 'taskCompleted'} 
+                    onClick = {() => dispatch({type: 'TOGGLE', payload: task.id })}>
+                    <p>{task.item}</p>
+                    </div>
+                ))}
+            </div>
+            <button onClick =  {clearOnClick}>Clear TodoList</button>
         </div>
     )
 }
